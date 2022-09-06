@@ -1,0 +1,102 @@
+<div class="card">
+    <div class="card-body">
+        <h2>
+            {{
+            (especialidad.id)? 'Editar Especialidad' : 'Nueva Especialidad'
+            }}
+        </h2>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <form autocomplete="off" [formGroup]="miFormulario">
+
+                    <!--Nombre-->
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Nombre</label>
+                        <div class="col-sm-9 ">
+                            <input class="form-control" type="text" formControlName="nombre"
+                                [(ngModel)]="especialidad.nombre" placeholder="Nombre de la especialidad">
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre')?.errors?.['minlength']">
+                                    caracteres minimos
+                                    {{miFormulario.get('nombre')?.errors?.['minlength']?.requiredLength}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre')?.errors?.['required']">
+                                    Campo obligatorio
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Nivel-->
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Nivel</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" formControlName="nivel"
+                                [(ngModel)]="especialidad.nivel" placeholder="Nivel">
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('nivel')?.touched && miFormulario.get('nivel')?.errors?.['required']">
+                                    Campo obligatorio
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Descripcion-->
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Descripcion</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" formControlName="descripcion"
+                                [(ngModel)]="especialidad.descripcion" placeholder="descripcion">
+                            <!--          <span class="form-text text-danger"
+                                            *ngIf="campoEsValido('descripcion')"
+                                                       >
+                                        Este campo es obligatorio
+                                            </span> -->
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('descripcion')?.touched && miFormulario.get('descripcion')?.errors?.['minlength']">
+                                    caracteres minimos
+                                    {{miFormulario.get('descripcion')?.errors?.['minlength']?.requiredLength}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('descripcion')?.touched && miFormulario.get('descripcion')?.errors?.['required']">
+                                    Campo obligatorio
+                                </span>
+                            </div>
+                            <div>
+                                <span class="form-text text-danger"
+                                    *ngIf="miFormulario.get('descripcion')?.touched && miFormulario.get('descripcion')?.errors?.['maxlength']">
+                                    caracteres maximos
+                                    {{miFormulario.get('descripcion')?.errors?.['maxlength']?.requiredLength}}
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class=" btn d-block w-100 btn-lg btn-primary " type="submit" (click)="guardar()"
+                                [disabled]="miFormulario.invalid">
+                                Guardar
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn d-block w-100 btn-lg btn-danger"
+                                [routerLink]="['/component/especialidad']">
+                                Atras
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-body">
+    <h1>TITULOS </h1>
+    <div class="table-responsive">
+
+
+      <!-- buscador  -->
+      <!-- <mat-form-field class="example-full-width" appearance="fill">
+               <mat-label>buscador</mat-label>
+               <input type="text"
+                       placeholder="Titulo"
+                       aria-label="buscar titulo"
+                       matInput
+                       [(ngModel)]="termino"
+                       name="termino"
+                       [matAutocomplete]="auto"
+                       (input)="buscando()">
+                <mat-autocomplete autoActiveFirstOption
+                                  #auto="matAutocomplete"
+                                  (optionSelected)="opcionSeleccionada($event)">
+                  <mat-option *ngFor="let titulo of titulos" [value]="titulo"
+                  [routerLink]="['/component',titulo.id]" >
+                    {{titulo.nombre}}
+                  </mat-option>        
+                  <mat-option *ngIf="titulos.length === 0 && termino!.trim().length > 0" value="">
+                    No de encontró nada con el término {{ termino }}
+                   </mat-option>
+                   </mat-autocomplete>
+              </mat-form-field>  -->
+      <!-- fin buscador -->
+
+
+
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Nombre</th>
+            <th class="text-dark font-medium fs-4">Resolución</th>
+            <th class="text-dark font-medium fs-4">Nivel</th>
+            <th class="text-dark font-medium fs-4">Horas</th>
+            <th class="text-dark font-medium fs-4">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let tit of titulos | paginate: { itemsPerPage: 2, currentPage: pagActual }"> -->
+          <tr *ngFor="let tit of titulos">
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <h5 class="mb-0 font-medium">{{tit.nombre}}</h5>
+                  <span class="text-muted">{{tit.id}}</span>
+                </div>
+              </div>
+            </td>
+            <td class="fs-4">{{tit.resolucion}}</td>
+            <td>
+              <span class="mb-0 fw-normal"> {{tit.nivel}} </span>
+            </td>
+
+            <td>
+              <h5 class="mb-0 fw-normal">{{tit.horas}}</h5>
+            </td>
+
+            <td>
+              <div class="mb-0 fw-normal">
+                <button type="button" class="btn btn-primary" [routerLink]="['/component',tit.id]">
+                  + INFORMACIÓN
+                </button>
+                <button type="button" class="btn btn-info  " [routerLink]="['/component/competencia-titulo', tit.id]">
+                  COMPETENCIA
+                </button>
+                <button type="button" class="btn btn-danger" (click)="borrarTitulo(tit,tit.id)">
+                  ELIMINAR
+                </button>
+              </div>
+            </td>
+          </tr>
+          <!-- </tr>  -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--   <pagination-controls 
+  class="d-flex justify-content-center"
+  (pageChange)="pagActual = $event"
+  previousLabel="Anterior"
+  nextLabel="Siguiente">
+  </pagination-controls> -->
+
+
+<!--   <div class="bg-light p-3  d-flex justify-content-center">Pagina actual: {{ pagActual }}</div>
+ -->
+
+<div class="mb-0 fw-normal">
+  <div class="mb-0 fw-normal">
+    <button type="button" class="btn btn-primary" style="float: right" routerLink="/component/formulario-Titulo">
+      NUEVO
+    </button>
+  </div>
+  <!-- </div>   [routerLink]="['/component/formTitulo']"  -->

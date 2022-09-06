@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-body">
+
+    <!-- title -->
+    <h1>ESPECIALIDADES </h1>
+    <!-- title -->
+
+    <div class="table-responsive">
+
+      <!-- buscador  -->
+      <!--                 <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>buscador</mat-label>
+                <input type="text"
+                        placeholder="Competencia"
+                        aria-label="buscar competencia"
+                        matInput
+                        [(ngModel)]="termino"
+                        name="termino"
+                        [matAutocomplete]="auto"
+                        (input)="buscando()">
+                <mat-autocomplete autoActiveFirstOption
+                                    #auto="matAutocomplete"
+                                    (optionSelected)="opcionSeleccionada($event)">
+                    <mat-option *ngFor="let competencia of competencias" [value]="competencia"
+                    [routerLink]="['/component/verCompetencia',competencia.id]" >
+                    {{competencia.nombre}}
+                    </mat-option>
+                    <mat-option *ngIf="competencias.length === 0 && termino!.trim().length > 0" value="">
+                    No de encontró nada con el término {{ termino }}
+                    </mat-option>
+                </mat-autocomplete>
+                    </mat-form-field> -->
+      <!-- fin buscador -->
+
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Nombre</th>
+            <th class="text-dark font-medium fs-4">Nivel</th>
+            <th class="text-dark font-medium fs-4">Descripción</th>
+            <th class="text-dark font-medium fs-4">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--   <tr *ngFor='let compet of competencias | paginate: { itemsPerPage: 2, currentPage: pagActual }'> -->
+          <tr *ngFor="let compet of especialidades">
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <h5 class="mb-0 font-medium">{{compet.nombre}}</h5>
+                  <span class="text-muted">{{compet.id}}</span>
+                </div>
+              </div>
+            </td>
+            <td class="fs-4">{{compet.nivel}}</td>
+            <td>
+              <span class="mb-0 fw-normal"> {{compet.descripcion}} </span>
+            </td>
+            <td>
+              <div class="mb-0 fw-normal">
+                <button type="button" class="btn btn-primary" [routerLink]="['/component/verEspecialidad',compet.id]">
+                  + INFORMACIÓN
+                </button>
+                <button type="button" class="btn btn-info  " [routerLink]="['/component/especialidad-titulo']">
+                  COMPETENCIA
+                </button>
+                <button type="button" class="btn btn-danger" (click)="borrarEspecialidad(compet,compet.id)">
+                  ELIMINAR
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!--   <pagination-controls 
+                        class="d-flex justify-content-center"
+                        (pageChange)="pagActual = $event"
+                        previousLabel="Anterior"
+                        nextLabel="Siguiente">
+                        </pagination-controls>
+ -->
+
+<!--   <div class="bg-light p-3  d-flex justify-content-center">Pagina actual: {{ pagActual }}</div> -->
+
+
+
+<div class="mb-0 fw-normal">
+
+  <!-- </div>   [routerLink]="['/component/formTitulo']"  -->
+
+  <div class="mb-0 fw-normal">
+    <div class="mb-0 fw-normal">
+      <button type="button" class="btn btn-primary" style="float: right"
+        routerLink="/component/formulario-Especialidad">
+        NUEVO
+      </button>
+    </div>
